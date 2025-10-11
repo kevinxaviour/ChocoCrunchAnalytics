@@ -8,21 +8,27 @@ import matplotlib.pyplot as plt
 import os
 
 
-conn=pymysql.connect(
-    # host='chococrunch.c1eg6mc4azh2.ap-south-1.rds.amazonaws.com',
-    # user='admin',
-    # password='Guvi1234',
-    # database='Chococruch'
-    # host='localhost',        # or your host
-    # user='root',
-    # password='12345678',
-    # database='guviprojects',
-    DB_USER = os.getenv("DB_USER"),
-    DB_PASS = os.getenv("DB_PASS"),
-    DB_HOST = os.getenv("DB_HOST"),
-    DB_NAME = os.getenv("DB_NAME")
-)
+# conn=pymysql.connect(
+#     # host='chococrunch.c1eg6mc4azh2.ap-south-1.rds.amazonaws.com',
+#     # user='admin',
+#     # password='Guvi1234',
+#     # database='Chococruch'
+#     # host='localhost',        # or your host
+#     # user='root',
+#     # password='12345678',
+#     # database='guviprojects',
+#     DB_USER = os.getenv("DB_USER"),
+#     DB_PASS = os.getenv("DB_PASS"),
+#     DB_HOST = os.getenv("DB_HOST"),
+#     DB_NAME = os.getenv("DB_NAME")
+# )
 
+conn = pymysql.connect(
+    host=st.secrets["mysql"]["host"],
+    user=st.secrets["mysql"]["user"],
+    password=st.secrets["mysql"]["password"],
+    database=st.secrets["mysql"]["database"]
+)
 # cursor = conn.cursor()
 select_table=['Product Info','Nutrient Info','Derived Metrics','Join-Based Queries']
 choose=st.selectbox("Select and Option",select_table)
@@ -584,3 +590,4 @@ try:
 finally:
     cursor.close()
     conn.close()
+
