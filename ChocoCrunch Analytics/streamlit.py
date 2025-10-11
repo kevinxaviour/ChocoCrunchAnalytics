@@ -8,20 +8,6 @@ import matplotlib.pyplot as plt
 import os
 
 
-# conn=pymysql.connect(
-#     # host='chococrunch.c1eg6mc4azh2.ap-south-1.rds.amazonaws.com',
-#     # user='admin',
-#     # password='Guvi1234',
-#     # database='Chococruch'
-#     # host='localhost',        # or your host
-#     # user='root',
-#     # password='12345678',
-#     # database='guviprojects',
-#     DB_USER = os.getenv("DB_USER"),
-#     DB_PASS = os.getenv("DB_PASS"),
-#     DB_HOST = os.getenv("DB_HOST"),
-#     DB_NAME = os.getenv("DB_NAME")
-# )
 
 conn = pymysql.connect(
     host=st.secrets["mysql"]["host"],
@@ -590,4 +576,5 @@ try:
 finally:
     cursor.close()
     conn.close()
+
 
