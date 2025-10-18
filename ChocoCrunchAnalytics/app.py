@@ -26,7 +26,7 @@ try:
         selected_query=st.selectbox("Choose an Query to view Answers",choose_query)
 
         if selected_query==choose_query[0]:
-            query='''select brand,count(product_name) `Total Products` from product_info group by brand order by `Total Products` desc;'''
+            query='''select brand,count(product_name) `Total Products` from product_info where brand is not null group by brand order by `Total Products` desc;'''
             cursor.execute(query)
             results=cursor.fetchall()
             results_columns = [desc[0] for desc in cursor.description]
@@ -576,5 +576,6 @@ try:
 finally:
     cursor.close()
     conn.close()
+
 
 
