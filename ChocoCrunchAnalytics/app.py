@@ -49,7 +49,7 @@ try:
             st.altair_chart(bar_chart, use_container_width=True)
 
         if selected_query==choose_query[1]:
-            query='''select brand,count(distinct product_name) `Unique Products` from product_info 
+            query='''select brand,count(distinct product_name) `Unique Products` from product_info where brand is not null
             group by brand order by `Unique Products` desc;'''
             cursor.execute(query)
             results=cursor.fetchall()
@@ -73,7 +73,7 @@ try:
             st.altair_chart(bar_chart, use_container_width=True)
 
         if selected_query==choose_query[2]:
-            query='''select brand Brand,count(product_name) `Count of Products` from product_info 
+            query='''select brand Brand,count(product_name) `Count of Products` from product_info where brand is not null
             group by brand order by `Count of Products` desc Limit 5;'''
             cursor.execute(query)
             results=cursor.fetchall()
@@ -123,7 +123,7 @@ try:
 
 
         if selected_query==choose_query[4]:
-            query='''select count(distinct brand) `Unique Brands` from product_info;'''
+            query='''select count(distinct brand) `Unique Brands` from product_info where brand is not null;'''
             cursor.execute(query)
             results=cursor.fetchall()
             results_columns = [desc[0] for desc in cursor.description]
@@ -576,6 +576,7 @@ try:
 finally:
     cursor.close()
     conn.close()
+
 
 
 
